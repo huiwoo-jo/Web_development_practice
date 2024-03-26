@@ -1,6 +1,9 @@
+// ./02http/server-5-routing.js
+// 라우팅
 const http = require("http");
 
 const server = http.createServer((req, res) => {
+    // 요청 메서드와 URL 가죠오기
     const {method, url} = req;
         res.setHeader("Content-Type", "text/plain");
 
