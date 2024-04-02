@@ -1,5 +1,5 @@
 // ./05http-ok/ok-http-01.js
-const http = requir('http');
+const http = require('http');
 
 const server = http.createServer((req, res)=>{
     res.setHeader("Content-Type", "text/html");
