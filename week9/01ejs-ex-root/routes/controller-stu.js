@@ -9,7 +9,7 @@ module.exports = function(app) {
     });
  */
     app.get('/', (req, res)=>{
-        res.render('ROOT');
+        res.render('index');
     });
 
     app.get('/contact', (req, res)=>{
