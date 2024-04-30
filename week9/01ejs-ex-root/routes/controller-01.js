@@ -7,10 +7,10 @@ module.exports = function(app) {
             + "<meta charset='UTF-8'>"
             + "<title>"
             + "</title>"
+            + "</head>"
             + "<body>"
             + "<h1>ROOT</h1>"
             + "</body>"
-            + "</head>"
             + "</html>"
         res.send(html);
     });
