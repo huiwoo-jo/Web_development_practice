@@ -7,7 +7,7 @@ const ejs = require("ejs");
 app.set("views", __dirname + '/views');
 app.set("view engine", "ejs");
 
-const router = require('./routes/controller')(app);
+const router = require('./routes/controller-stu')(app);
 
 const server = app.listen(3000, () => {
     console.log('Server on 3000 port');
