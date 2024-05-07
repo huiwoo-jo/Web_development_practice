@@ -1,0 +1,478 @@
+﻿'24/05/07 <dy241WebDev> 10주차 수업요약(stu) mongodb (shell)
+
+[실습] 10주차
+# MongoDB
+1) Community Server
+2) shell         (CLI)
+3) compass    (GUI)
+
+=================
+[실습] 10주차                                                                                                                                      
+https://www.mongodb.com/
+================
+C:\dev\dev\nodejs-ex
+C:\dev\dev\nodejs-ex-stu
+---------------------------
+[강의] 10주차
+# mongodb
+---------------------------
+# MongoDB 다운로드: (파일 3가지)
+https://www.mongodb.com/
+
+[imsi]: 다운로드 (파일: 3가지)
+압축해제 : MongoDB 로 이름변경
+
+# mongodb Community Server
+https://www.mongodb.com/try/download/community
+
+# mongodb shell
+https://www.mongodb.com/try/download/shell
+
+# compass
+https://www.mongodb.com/products/tools/compass
+https://www.mongodb.com/try/download/compass
+---------------------------
+# MongoDB 설치 (zip): (24/05/07 현재)
+1) Community 7.0.9 (win)(zip)
+2) shell 2.2.5(win)(zip)
+3) compass (win)(exe)
+1.43.0 (Stable)
+-----------------------------------------------------
+# MongoDB 설치
+
+1.  설치: [MongoDB]
+1) Community (zip 파일 압축 해제)
+2) MongoDB 폴더로 이름 변경후 C 드라이브로 이동
+3) C 드라이브에 폴더 생성
+c:\MongoData\db
+
+4) shell (zip 파일 압축 해제)
+[MongoDB] 폴더의 bin 파일에 
+압축해제한 폴더를 겹쳐 쓴다
+-----------------------------------------------------
+# MongoDB 실행
+
+2. 실행: cmd 를 3개 실행시킨다
+<윈도 + r>: cmd 라고 입력
+
+1) 데몬
+2) 셸
+3) 프로젝트(node)
+-----------------------------------------------------
+# MongoDB 데몬 실행(cmd)
+cd c:\
+cd C:\MongoDB\bin
+mongod --dbpath c:\MongoData\db
+
+# MongoDB shell 실행(cmd)
+cd c:\
+cd C:\MongoDB\bin
+mongosh
+-----------------------------------------------------
+# 실습(MongoDB zip 파일 설치 확인용)
+use TESTDB
+db.sample.insertOne({name : '홍길동' });
+db.sample.insertOne({name : '정주리' , age : 23 });
+db.sample.insertOne({name : '윤민정' , mobile : '010-1111-1111'  });
+
+# 조회
+db.sample.find();
+
+/* ========================================= */
+/* [실습 A] MongoDB: (shell)
+/* ========================================= */
+[exA-01] (MongoDB)
+
+# 데이터베이스 목록
+show dbs
+# 컬렉션 목록
+show collections
+# 현재 데이터베이스
+db
+
+# 데이터베이스 삭제
+use TESTDB
+db.dropDatabase();
+
+# 입력
+use TESTDB
+db.sample.insertOne({name : '홍길동' });
+db.sample.insertOne({name : '정주리' , age : 23 });
+db.sample.insertOne({name : '윤민정' , mobile : '010-1111-1111'  });
+
+-- 조회
+db.sample.find();
+db.sample.find().pretty();
+
+=> 아래와 같음
+SELECT *
+FROM  sample;
+---
+
+#[요약] MongoDB
+ * 대소문자 구분
+C: INSERT  ->  insertOne(), insertMany()
+	       save()
+R: SELECT   -> find()
+U: UPDATE  ->  updateOne(), updateMany()
+D: DELETE   ->  deleteOne(), deleteMany()
+	        removeOne(), removeMany()
+
+# 삭제
+db.sample.deleteOne( { name: '홍길동'});
+db.sample.deleteMany( {} );
+db.sample.remove( {} );
+
+# 입력
+db.sample.insertOne({name : '홍길동' });
+db.sample.insertOne({name : '정주리' , age : 23 });
+db.sample.insertOne({name : '윤민정' , mobile : '010-1111-1111'  });
+
+# 수정
+db.sample.updateMany( { age: {$lte:23}}, {$set: {age: 33}});
+db.sample.find();
+
+
+db.sample.updatemany( { name: '홍길동' }. {$set: {age: 20}});
+db.sample.find();
+
+db.sample.deleteMany( {age: {$lt: 25}});
+---
+DELETE FROM sample WHERE age<25;
+
+db.smple.remove( {} );
+
+
+# 삭제
+db.sample.remove( {} );
+-----------------------------------------------------
+3. mongodb 정상종료
+
+cd d:
+cd d:\MongoDB\bin\
+mongo
+
+>use admin
+>db.shutdownServer();
+-----------------------------------------------------
+// 비교 문법
+>  >=  =  !=  <=  <	
+
+$gt   $gte  $lt   $lte $eq  $ne    $in  $nin
+ >     >=     <    <=  =    <>
+-----------------------------------------------------
+-----------------------------------------------------
+### [요약]
+
+# MongoDB
+
+1. 데이터베이스:        
+2. 컬렉션(테이블):      
+3. 도큐먼트(레코드)
+
+# 용어
+RDBMS		MongoDB
+---		---
+데이터베이스	데이터베이스
+테이블		컬렉션
+필드		도큐먼트
+
+# RDBMS vs.   MongoDB
+CREATE/INSERT: 데이터 입력    
+Read/   SELECT: 데이터 조회     
+Update/UPDATE: 데이터 수정   
+Delete/ DELETE: 데이터 삭제     
+
+/* ========================================= */
+/* [실습 B] MongoDB: (compass)
+/* ========================================= */
+
+# 입력
+use TESTDB
+db.sample.insertOne({name : '홍길동' });
+db.sample.insertOne({name : '정주리' , age : 23 });
+db.sample.insertOne({name : '윤민정' , mobile : '010-1111-1111'  });
+
+db.sample.find();
+
+# 수정
+
+# 삭제
+
+-----------------------------------------------------
+
+
+/* ========================================= */
+// [실습 01-01] Node.js (mongodb) (01mongodb-recipe)
+컬렉션: contacts
+/* ========================================= */
+dbURL = "mongodb://localhost:27017",
+dbName = "recipe_db";
+
+compass: recipe_db
+컬렉션: contacts
+------------------
+C:\dev\dev241\nodejs-ex\week10-mongo-ans\01mongodb-recipe
+
+(pro204)
+C:\dev\dev\nodejs-ex\week10-mongo-ans\01mongodb-recipe\database
+
+# (shell)
+use admin
+db.shutdownServer();
+
+1) 데몬
+# MongoDB 데몬 실행(cmd)
+mongod --dbpath C:\dev\dev\nodejs-ex\week10-mongo-ans\01mongodb-recipe\database
+
+2) 셸
+# MongoDB shell 실행(cmd)
+cd c:\
+cd C:\MongoDB\bin
+mongosh
+
+3) 프로젝트(node)
+cd C:\dev\dev\nodejs-ex\week10-mongo-ans\01mongodb-recipe
+------
+npm i express
+npm i ejs
+npm i express-ejs-layouts
+npm i http-status-codes
+npm i mongodb
+
+
+------
+cf)
+    "mongodb": "^3.1.10"
+------
+# 소스 수정(app.js)
+
+// (app.js) 수정해야 할 사항
+# 소스 수정: (MongdoDB v3.0 수정해야)
+
+1) localhost 인식하지 못함 => 127.0.0.1 로 작성
+
+  // dbURL = "mongodb://localhost:27017",
+  dbURL = "mongodb://127.0.0.1:27017",
+
+2) {useUnifiedTopology:true},  추가
+MongoDB.connect(
+  dbURL,
+  {useUnifiedTopology:true},
+  (error, client) => {
+    if (error) throw error;
+    let db = client.db(dbName);
+
+
+# (수정 전)
+MongoDB.connect(
+  dbURL,
+  (error, client) => {
+
+# (수정 후)
+# 수정할 사항 (다음과 같이 수정)
+  dbURL = "mongodb://127.0.0.1:27017",
+  dbName = "recipe_db";
+
+MongoDB.connect(
+  dbURL,
+  { useUnifiedTopology: true },
+  (error, client) => {
+
+3) insert() -> insertOne() 으로 수정
+    db.collection("contacts").insertOne(
+
+insertOne(   {  name: "Freddie Mercury",  email: "fred@queen.com"    }  )
+
+
+-----------------------------------------------------
+<dy241-w10>
+(stu) 주의)     "mongodb": "^3.1.10"
+
+-----------------
+{
+  "name": "01mongodb-recipe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1",
+    "http-status-codes": "^2.3.0",
+    "mongodb": "^3.1.10"
+  }
+}
+------
+
+------
+node app
+------
+// ./01mongodb-recipe/app.js
+"use strict";
+
+const express = require("express"),
+  app = express(),
+  errorController = require("./controllers/errorController"),
+  homeController = require("./controllers/homeController"),
+  layouts = require("express-ejs-layouts"),
+  MongoDB = require("mongodb").MongoClient,
+  // dbURL = "mongodb://localhost:27017",
+  dbURL = "mongodb://127.0.0.1:27017",
+  dbName = "recipe_db";
+
+MongoDB.connect(
+  dbURL,
+  {useUnifiedTopology:true},
+  (error, client) => {
+    if (error) throw error;
+    let db = client.db(dbName);
+    db.collection("contacts")
+      .find()
+      .toArray((error, data) => {
+        if (error) throw error;
+        console.log(data);
+      });
+
+    db.collection("contacts").insertOne(
+      {
+        name: "Freddie Mercury",
+        email: "fred@queen.com"
+      },
+      (error, db) => {
+        if (error) throw error;
+        console.log(db);
+      }
+    );
+  }
+);
+
+app.set("port", process.env.PORT || 3000);
+app.set("view engine", "ejs");
+
+app.use(express.static("public"));
+app.use(layouts);
+app.use(
+  express.urlencoded({
+    extended: false
+  })
+);
+app.use(express.json());
+app.use(homeController.logRequestPaths);
+
+app.get("/name", homeController.respondWithName);
+app.get("/items/:vegetable", homeController.sendReqParam);
+
+app.post("/", (req, res) => {
+  console.log(req.body);
+  console.log(req.query);
+  res.send("POST Successful!");
+});
+
+app.use(errorController.logErrors);
+app.use(errorController.respondNoResourceFound);
+app.use(errorController.respondInternalError);
+
+app.listen(app.get("port"), () => {
+  console.log(`Server running at http://localhost:${app.get("port")}`);
+});
+
+------
+
+------------------------------------------------
+[실습 02] 로그인: 
+데이터베이스: local
+컬렉션: users
+
+1. (데몬)
+
+mongod --dbpath C:\dev\dev\nodejs-ex\week10-mongo-ans\02mongodb-user\database
+
+
+2. (셸)
+mongosh
+
+# 다음 mongodb 문법을 셀에서 입력한다
+use local
+db.users.remove( { name: /소녀/ } )
+db.users.find().pretty()
+db.users.insert( { id: "test01", name: "소녀시대", password: "123456" } )
+db.users.find().pretty()
+
+
+3. (프로젝트)
+
+cd C:\dev\dev\nodejs-ex\week10-mongo-ans\02mongodb-user
+
+--------------------------------
+# [설명]
+db.users.remove( { name: /소녀/ } )
+
+DELETE
+FROM   users
+WHERE  name LIKE '%소녀%';
+--------------------------------
+npm i express
+npm i body-parser
+npm i cookie-parser
+npm i http
+npm i path
+npm i express-error-handler
+npm i express-session
+npm i errorhandler
+npm i serve-static
+
+--------------------------------
+http://localhost:3000/public/login.html
+--------
+{
+  "name": "01mongodb-recipe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "errorhandler": "^1.5.1",
+    "express": "^4.19.2",
+    "express-error-handler": "^1.1.0",
+    "express-session": "^1.18.0",
+    "http": "^0.0.1-security",
+    "mongodb": "^3.1.10",
+    "path": "^0.12.7",
+    "serve-static": "^1.15.0"
+  }
+}
+
+------
+--------------------------------
+http://localhost:3000/public/login.html
+
+# 실행
+node app
+
+# 웹브라우저
+(app.js) 로그인
+http://localhost:3000/public/login.html
+
+--로그인
+test01
+123456
+================================
+
+============================
+
