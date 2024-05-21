@@ -1,0 +1,146 @@
+'24/05/21 <dy241WebDev> 11주차 수업요약(stu) mongodb
+
+[실습] 11주차
+=================
+`[실습] 11주차                                                                                                                                      
+#공식 홈페이지
+http://nodejs.org/
+
+http://npmjs.com
+http://expressjs.com
+
+https://www.mongodb.com/
+================
+C:\dev\dev\nodejs-ex
+C:\dev\dev\nodejs-ex-stu
+---------------------------
+---------------------------
+# MongoDB 다운로드: (파일 3가지)
+https://www.mongodb.com/
+
+[imsi]: 다운로드 (파일: 3가지)
+압축해제 : MongoDB 로 이름변경
+
+# mongodb Community Server
+https://www.mongodb.com/try/download/community
+
+# mongodb shell
+https://www.mongodb.com/try/download/shell
+
+# compass
+https://www.mongodb.com/products/tools/compass
+https://www.mongodb.com/try/download/compass
+---------------------------
+# MongoDB 설치 (zip): (24/05/07 현재)
+1) Community 7.0.9 (win)(zip)
+2) shell 2.2.5(win)(zip)
+3) compass (win)(exe)
+1.43.0 (Stable)
+-----------------------------------------------------
+[실행] cmd 를 3개 실행한다
+
+cd c:\
+cd c:\Mongodb\bin
+mongod --dbpath c:\Mongodata\db
+
+cd c:\
+cd c:\Mongodb\bin
+mongosh
+-----------------------------------------------------
+# 실습(MongoDB zip 파일 설치 확인용)
+use TESTDB
+db.sample.insertOne({name : '홍길동' });
+db.sample.insertOne({name : '정주리' , age : 23 });
+db.sample.insertOne({name : '윤민정' , mobile : '010-1111-1111'  });
+
+# 조회
+db.sample.find();
+-----------------------------------------------------
+# [요약] MongoDB
+
+1. 데이터베이스:         recipe_db
+2. 컬렉션(테이블):       contacts
+3. 도큐먼트(레코드)
+
+# RDBMS vs.   MongoDB
+CREATE/INSERT: 데이터 입력   insert()
+Read/   SELECT: 데이터 조회    find()
+Update/UPDATE: 데이터 수정   update()
+Delete/ DELETE: 데이터 삭제    remove()
+//* ========================================= */
+// [실습 03-01] Node.js (mongodb) (03mongodb-movie)
+컬렉션: movies
+
+use Moviest
+db.movies.drop();
+
+db.movies.find();
+//* ========================================= */
+dbURL = "mongodb://localhost:27017",
+dbName = "moviest";
+
+compass: moviest
+컬렉션: movies
+//* ========================================= */
+-----------------
+# package.json
+{
+  "name": "03mongodb-movie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "find.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.1.10",
+    "mongoose": "^4.3.7"
+  }
+}
+
+-----------------
+[과제03] (Mongodb) (shell)
+=========================
+cd c:\
+cd c:\Mongodb\bin
+mongod --dbpath c:\Mongodata\db
+
+cd c:\
+cd c:\Mongodb\bin
+mongosh
+=========================
+use mydb;
+db.users.drop();
+
+db.users.insertMany( [
+    { name: "Abet", age: 19 },
+    { name: "Betty", age: 20 },
+    { name: "Charlie", age: 23, skills: [ "mongodb", "nodejs"] },
+    { name: "David", age: 23, score: 20 }
+]);
+
+db.users.find();
+
+-- [Quiz] 다음 문법을 작성하시오(컬렉션 users)
+
+1. users 컬렉션에 다음 Document 데이터 넣기
+  - name 이 sue, age 가 26, status 가 pending 인 Document
+
+2. users Document 검색
+age 가 18 보다 큰 Document 의 name 출력하기(_id 는 출력하지 않기)
+
+3. users Document 수정
+age 가 25 보다 작은 Document 의 status 를 reject 로 수정
+
+status 가 pending 인 age 값을 2씩 증가
+
+4. users Document 삭제
+status 가 reject 인 document 삭제
+=========================
+
+
+
+
+
