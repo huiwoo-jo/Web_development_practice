@@ -67,6 +67,23 @@ CREATE/INSERT: 데이터 입력   insert()
 Read/   SELECT: 데이터 조회    find()
 Update/UPDATE: 데이터 수정   update()
 Delete/ DELETE: 데이터 삭제    remove()
+====
+_id, name, age, status
+
+[SELECT]
+# RDB
+SELECT *
+FROM users
+WHERE name = 'sue';
+
+# MongoDB
+db.users.find( { name: 'sue'} , { _id: 0, name: 1, age: 1} );
+ - 0 : 미출력 / 1 : 출력
+
+[UPDATE]
+- updateMany : 몽땅 수정
+- updteOne : 첫 번째만 수정
+
 //* ========================================= */
 // [실습 03-01] Node.js (mongodb) (03mongodb-movie)
 컬렉션: movies
