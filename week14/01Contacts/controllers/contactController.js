@@ -45,7 +45,7 @@ const updateContact = asyncHandler(async (req, res) => {
     { name, email, phone },
     { new: true }
   );
-  res.status(200).send(updatedContact);
+  res.redirect("/contacts");
 });
 
 // @desc Delete contact
